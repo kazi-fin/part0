@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+
+    User->>Browser: Enters a new note and clicks "Save"
+    Browser->>Server: HTTP POST request to /exampleapp/new_note_spa with note data (JSON)
+    Server-->>Browser: Responds with success confirmation (201 Created or 200 OK)
+    
+    Browser->>Server: HTTP GET request to /exampleapp/data.json (to fetch updated notes)
+    Server-->>Browser: Sends updated JSON data with the new note
+    
+    Browser->>User: Updates UI with the new note (without reloading the page)
